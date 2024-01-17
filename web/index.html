@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probar API rest</title>
+    <style></style>
+    <script type="module">
+        fetch('http://localhost:1234/movies')
+        .then(res => res.json())
+        .then(movies => {
+            const html = movies.map(movie => {
+                return `
+                <article data-id="${movie.id}">
+                    <h2>${movie.title}</h2>
+                    <p>${movie.poster}</p>
+                    <p>${movie.year}</p>
+                </article>
+                `
+            }).join('')
+
+            document.querySelector('main').innerHTML = html
+        })
+    </script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>
